@@ -7,7 +7,25 @@
 		<key>Travellers.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>6</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>B93B98172D57A18100DE84B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B93B982D2D57A18200DE84B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B93B98372D57A18200DE84B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
