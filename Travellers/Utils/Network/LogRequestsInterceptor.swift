@@ -1,12 +1,13 @@
 //
-//  RequestInterceptor.swift
+//  LogRequestsInterceptor.swift
 //  Travellers
 //
 //  Created by Milton Putallaz on 15/02/2025.
 //
+
 import Alamofire
 
-final class AuthRequestInterceptor: RequestInterceptor {
+final class LogRequestsInterceptor: RequestInterceptor {
     
     private let sessionManager: SessionManager
     
@@ -15,13 +16,7 @@ final class AuthRequestInterceptor: RequestInterceptor {
     }
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, any Error>) -> Void) {
-        Task {
-            let token = try await sessionManager.getToken()
-            var urlRequest = urlRequest
-            urlRequest.headers.add(.authorization(bearerToken: token!))
-
-            completion(.success(urlRequest))
-        }
-        
+        print("-----> \(String(describing: urlRequest.url)) ----> Headers: \(urlRequest.headers)")
+        completion(.success(urlRequest))
     }
 }

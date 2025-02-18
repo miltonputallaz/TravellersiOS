@@ -1,5 +1,5 @@
 //
-//  LoginControllerImpl.swift
+//  LoginViewModel.swift
 //  Travellers
 //
 //  Created by Milton Putallaz on 08/02/2025.
@@ -28,14 +28,7 @@ class LoginViewModel: ObservableObject {
     func login() async {
         await updateLoading(loading: true)
         let result = await loginRepository.login(email: uiState.username, password: uiState.password)
-        do {
-            try await Task.sleep(for: .seconds(3))
-        } catch {
-            
-        }
         await updateLoading(loading: false)
-        
-        print(result)
     }
     
     @MainActor

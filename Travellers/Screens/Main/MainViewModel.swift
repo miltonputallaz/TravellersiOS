@@ -1,5 +1,5 @@
 //
-//  LoginControllerImpl.swift
+//  MainViewModel.swift
 //  Travellers
 //
 //  Created by Milton Putallaz on 08/02/2025.
@@ -21,12 +21,7 @@ class MainViewModel: ObservableObject {
     init(
         sessionManager: SessionManager
     ){
-        print("Main initied")
         self.sessionManager = sessionManager
-    }
-    
-    deinit {
-        print("Main deinitied")
     }
     
     @MainActor
@@ -34,7 +29,15 @@ class MainViewModel: ObservableObject {
         uiState.loading = loading
     }
     
-    func logout() async {
-        await sessionManager.logout()
+    func logout() {
+        Task {
+            
+            do {
+                try await sessionManager.logout()
+            } catch {
+                
+            }
+        }
+        
     }
 }

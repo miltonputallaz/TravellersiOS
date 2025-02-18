@@ -6,7 +6,7 @@
 //
 
 
-enum ResponseState<T: Decodable> {
+enum ResponseState<T> {
     case success(T)
     case error(String)
 }

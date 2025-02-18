@@ -6,14 +6,28 @@
 //
 
 import Foundation
+import Resolver
 
-class TravelListViewModel: ObservableObject {
- 
+
+class TravelListViewModel: TravelListViewModelProtocol {
+    @Injected var travelsRepository: TravelsRepository
+    @Published var uiState = TravelListUIState()
+    
     init() {
-        print("TravelListViewModel init")
+        Task {
+            
+            let res = await travelsRepository.getTravels()
+            switch res {
+            case .success(let travels):
+                await updateTravels(travels)
+            case .error:
+                break
+            }
+        }
     }
     
-    deinit {
-        print("TravelListViewModel deinit")
+    @MainActor
+    private func updateTravels(_ travels: [ExternalTravel]) {
+        self.uiState.travels = travels
     }
 }

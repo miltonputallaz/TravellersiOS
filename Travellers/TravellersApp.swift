@@ -10,7 +10,6 @@ import Resolver
 
 @main
 struct TravellersApp: App {
-    let persistenceController = PersistenceController.shared
     @StateObject var themeManager = ThemeManager()
     @InjectedObject var sessionManager: SessionManager
     
@@ -18,7 +17,6 @@ struct TravellersApp: App {
         
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(themeManager)
                 .environmentObject(sessionManager)
         }

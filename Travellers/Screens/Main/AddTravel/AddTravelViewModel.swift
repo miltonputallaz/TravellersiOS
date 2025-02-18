@@ -6,14 +6,45 @@
 //
 
 import Foundation
+import Resolver
+import PhotosUI
+import SwiftUI
 
-class AddTravelViewModel: ObservableObject {
+class AddTravelViewModel: AddTravelViewModelProtocol {
     
-    init() {
-        print("AddTravelViewModel Init")
+    private var travelsRepository: TravelsRepository
+    @Published var uiState = AddTravelUIState()
+    @Published var selectedImage: PhotosPickerItem? = nil {
+        didSet {
+            Task {
+                await setImageWithData(selectedImage: selectedImage)
+            }
+        }
     }
     
-    deinit {
-        print("AddTravelViewModel Deinit")
+    init(
+        travelsRepository: TravelsRepository
+    ) {
+        self.travelsRepository = travelsRepository
     }
+    
+    func addTravel() async {
+        
+        let image = try? await selectedImage?.loadTransferable(type: Data.self)
+        
+        let result = await travelsRepository.postTravel(title: uiState.title, description: uiState.description, image: image, invitedEmails: uiState.invitedMails)
+        
+    }
+    
+    @MainActor
+    private func setImageWithData(selectedImage: PhotosPickerItem?) async {
+        if let data = try? await selectedImage?.loadTransferable(type: Data.self) {
+            uiState.selectedImage = data
+        }
+    }
+    
+    func addEmail(_ email: String) {
+        uiState.invitedMails.append(email)
+    }
+
 }

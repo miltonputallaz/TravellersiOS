@@ -6,13 +6,20 @@
 //
 import Alamofire
 
-class UnauthRemoteRepositoryImpl: RemoteRepository {
+class UnauthRemoteRepositoryImpl: UnauthRemoteRepository {
     
-    func getDecodable<T: Decodable>(url: String, type: T.Type, headers: HTTPHeaders? = nil) async throws -> T {
-        return try await AF.request(url, headers: headers).serializingDecodable(type).value
+    private var logInterceptor: LogRequestsInterceptor
+    private var session: Session
+    
+    init(
+        logInterceptor: LogRequestsInterceptor
+    ){
+        self.logInterceptor = logInterceptor
+        session = Session(interceptor: Interceptor(adapters: [logInterceptor]))
     }
     
     func post<T: Decodable>(url: String, parameters: [String: Any], type: T.Type, headers: HTTPHeaders? = nil) async throws -> T {
-        return try await AF.request(url, method: .post, parameters: parameters, headers: headers).serializingDecodable(type).value
+        return try await session.request(url, method: .post, parameters: parameters, headers: headers).serializingDecodable(type).value
     }
+    
 }

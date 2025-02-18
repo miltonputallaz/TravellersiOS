@@ -10,4 +10,5 @@ import Alamofire
 protocol RemoteRepository {
     func getDecodable<T: Decodable>(url: String, type: T.Type, headers: HTTPHeaders?) async throws -> T
     func post<T: Decodable>(url: String, parameters: [String: Any], type: T.Type, headers: HTTPHeaders?) async throws -> T
+    func postFormData(url: String, multipartFormData: MultipartFormData, headers: HTTPHeaders?) async throws -> String
 }

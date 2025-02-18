@@ -53,9 +53,8 @@ struct LoginView: View {
 
 #Preview {
     Resolver.setupMockMode()
-    Resolver.mock.register { LoginRemoteRepositoryImpl(remoteRepository: Resolver.resolve(), sessionManager: Resolver.resolve()) }.implements(LoginRemoteRepository.self)
-    Resolver.mock.register { LoginRepositoryImpl(loginRemoteRepository: Resolver.resolve()) }.implements(LoginRepository.self)
+    Resolver.mock.register { LoginRemoteRepositoryImpl(unauthRemoteRepository: Resolver.resolve()) }.implements(LoginRemoteRepository.self)
+    Resolver.mock.register { LoginRepositoryImpl(loginRemoteRepository: Resolver.resolve(), sessionManager: Resolver.resolve()) }.implements(LoginRepository.self)
     Resolver.mock.register { LoginViewModel(loginRepository: Resolver.resolve()) }
-    let loginController: LoginViewModel = Resolver.resolve()
     return LoginView().environmentObject(ThemeManager())
 }

@@ -1,5 +1,5 @@
 //
-//  Controllers+Injection.swift.swift
+//  Repositories+Injection.swift.swift
 //  Travellers
 //
 //  Created by Milton Putallaz on 08/02/2025.
@@ -9,16 +9,13 @@ import Resolver
 
 extension Resolver {
     public static func registerRepositories() {
-        register{ LoginRepositoryImpl(loginRemoteRepository: resolve()) }.implements(LoginRepository.self).scope(.application)
-        register(name:.remoteRepositoryName){ RemoteRepositoryImpl(authInterceptor: resolve())  as RemoteRepository}.scope(.application)
-        register(name:.unauthRemoteRepositoryName){ UnauthRemoteRepositoryImpl() as RemoteRepository}.scope(.application)
-        register{ LoginRemoteRepositoryImpl(remoteRepository: resolve(name: .unauthRemoteRepositoryName), sessionManager: resolve()) }.implements(LoginRemoteRepository.self).scope(.application)
-        
+
+        register{ LoginRepositoryImpl(loginRemoteRepository: resolve(), sessionManager: resolve() ) }.implements(LoginRepository.self).scope(.application)
+        register{ RemoteRepositoryImpl(authInterceptor: resolve(), logInterceptor: resolve())}.implements(RemoteRepository.self).scope(.application)
+        register{ UnauthRemoteRepositoryImpl(logInterceptor: resolve())}.implements(UnauthRemoteRepository.self).scope(.application)
+        register{ LoginRemoteRepositoryImpl(unauthRemoteRepository: resolve()) }.implements(LoginRemoteRepository.self).scope(.application)
+        register{ TravelsRemoteRepositoryImpl(remoteRepository: resolve()) }.implements(TravelsRemoteRepository.self).scope(.application)
+        register{ TravelsRepositoryImpl(travelsRemoteRepository: resolve()) }.implements(TravelsRepository.self).scope(.application)
     }
 
-}
-
-extension Resolver.Name {
-    static let unauthRemoteRepositoryName = Self("unauthRemoteRepository")
-    static let remoteRepositoryName = Self("remoteRepository")
 }

@@ -10,5 +10,6 @@ import Alamofire
 extension Resolver {
     public static func registerNetwork() {
         register { AuthRequestInterceptor(sessionManager: Resolver.resolve()) }.implements(RequestInterceptor.self)
+        register { LogRequestsInterceptor(sessionManager: Resolver.resolve()) }.implements(RequestInterceptor.self)
     }
 }

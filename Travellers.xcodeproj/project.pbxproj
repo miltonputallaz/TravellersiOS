@@ -47,6 +47,24 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B927F8412D628086008DD613 /* Exceptions for "Travellers" folder in "TravellersTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/External/ExternalTravel.swift,
+				Screens/Main/AddTravel/AddTravelUIState.swift,
+				Screens/Main/AddTravel/AddTravelViewModelProtocol.swift,
+				Screens/Main/TravelList/TravelListUIState.swift,
+				Screens/Main/TravelList/TravelListViewModelProtocol.swift,
+			);
+			target = B93B982D2D57A18200DE84B7 /* TravellersTests */;
+		};
+		B927F8472D628162008DD613 /* Exceptions for "TravellersTests" folder in "Travellers" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Mocks/MockTravelListViewModel.swift,
+			);
+			target = B93B98172D57A18100DE84B7 /* Travellers */;
+		};
 		B95191342D57E46E008D4035 /* Exceptions for "Travellers" folder in "Travellers" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -61,12 +79,16 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				B95191342D57E46E008D4035 /* Exceptions for "Travellers" folder in "Travellers" target */,
+				B927F8412D628086008DD613 /* Exceptions for "Travellers" folder in "TravellersTests" target */,
 			);
 			path = Travellers;
 			sourceTree = "<group>";
 		};
 		B93B98312D57A18200DE84B7 /* TravellersTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B927F8472D628162008DD613 /* Exceptions for "TravellersTests" folder in "Travellers" target */,
+			);
 			path = TravellersTests;
 			sourceTree = "<group>";
 		};
@@ -574,7 +596,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
@@ -616,7 +638,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.2;

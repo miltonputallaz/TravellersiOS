@@ -10,7 +10,6 @@ import CoreData
 import Resolver
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var sessionManager: SessionManager
  
     var body: some View {
@@ -25,5 +24,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    ContentView()
 }

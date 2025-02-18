@@ -6,5 +6,5 @@
 //
 
 protocol LoginRemoteRepository {
-    func login(email: String, password: String) async -> ResponseState<LoginResponse>
+    func login(email: String, password: String) async -> ResponseState<RemoteLoginResponse>
 }

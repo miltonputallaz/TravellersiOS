@@ -1,5 +1,5 @@
 //
-//  Controllers+Injection.swift.swift
+//  ViewModels+Injection.swift.swift
 //  Travellers
 //
 //  Created by Milton Putallaz on 08/02/2025.
@@ -11,7 +11,7 @@ extension Resolver {
     public static func registerViewModels() {
         register { LoginViewModel(loginRepository: resolve()) }.scope(.unique)
         register { MainViewModel(sessionManager: resolve()) }.scope(.unique)
-        register { TravelListViewModel() }.scope(.unique)
-        register { AddTravelViewModel() }.scope(.unique)
+        register { TravelListViewModel() }.implements((any TravelListViewModelProtocol).self).scope(.unique)
+        register { AddTravelViewModel(travelsRepository: resolve()) }.implements((any AddTravelViewModelProtocol).self).scope(.unique)
     }
 }

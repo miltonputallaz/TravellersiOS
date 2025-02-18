@@ -9,11 +9,11 @@ import Security
 import KeychainAccess
 
 
-class SessionManager: ObservableObject {
+actor SessionManager: ObservableObject {
     
-    @MainActor
-    @Published var isAuthenticated: Bool = false
-    private let keychain = Keychain(service: "com.sani.corporation.travellers")
+    
+    @MainActor @Published var isAuthenticated: Bool = false
+    private let keychain = Keychain(service: SecurityKeys.JWT_KEYCHAIN_SERVICE)
 
     init() {
         Task {
@@ -22,24 +22,28 @@ class SessionManager: ObservableObject {
     }
 
     /// Asynchronously check if a token exists in Keychain
-    @MainActor
     func checkAuthentication() async {
         if let token = try? await getToken(), !token.isEmpty {
-            isAuthenticated = true
+            await updateAuthenticationState(true)
         } else {
-            isAuthenticated = false
+            await updateAuthenticationState(false)
         }
     }
 
     /// Fetch token from Keychain asynchronously
     func getToken() async throws -> String? {
-        return keychain["auth_token"]
+        return keychain[SecurityKeys.TOKEN_KEY]
     }
 
     /// Remove token from Keychain and update state
-    @MainActor
-    func logout() async {
-        try? keychain.remove("auth_token")
-        isAuthenticated = false
+    func logout() async throws{
+        try keychain.remove(SecurityKeys.TOKEN_KEY)
+        await updateAuthenticationState(false)
     }
+    
+    /// Helper function to update `isAuthenticated` on the main thread
+   @MainActor
+   private func updateAuthenticationState(_ state: Bool) {
+       self.isAuthenticated = state
+   }
 }
