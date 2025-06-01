@@ -16,7 +16,7 @@ class TravelListViewModel: TravelListViewModelProtocol {
     init() {
         Task {
             
-            let res = await travelsRepository.getTravels()
+            let res = await travelsRepository.getTravelIfNecessary()
             switch res {
             case .success(let travels):
                 await updateTravels(travels)

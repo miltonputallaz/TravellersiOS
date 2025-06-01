@@ -10,7 +10,7 @@ import CoreData
 import Resolver
 
 struct ContentView: View {
-    @EnvironmentObject private var sessionManager: SessionManager
+    @StateObject var sessionManager: SessionManager = Resolver.resolve()
  
     var body: some View {
         Group {

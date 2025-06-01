@@ -8,8 +8,8 @@ import Foundation
 import SwiftUI
 import PhotosUI
 
-protocol AddTravelViewModelProtocol: ObservableObject {
-    var uiState: AddTravelUIState { get set }
+protocol AddEditTravelViewModelProtocol: ObservableObject {
+    var uiState: AddEditTravelUIState { get set }
     var selectedImage: PhotosPickerItem? { get set }
     
     func addTravel() async

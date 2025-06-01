@@ -8,9 +8,10 @@
 import PhotosUI
 import SwiftUI
 
-struct AddTravelUIState {
+struct AddEditTravelUIState {
     var title: String = ""
     var description: String = ""
     var selectedImage: Data? = nil
     var invitedMails: [String] = []
+    var asyncImageId: String? = nil
 }

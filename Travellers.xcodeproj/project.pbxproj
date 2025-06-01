@@ -51,8 +51,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Models/External/ExternalTravel.swift,
-				Screens/Main/AddTravel/AddTravelUIState.swift,
-				Screens/Main/AddTravel/AddTravelViewModelProtocol.swift,
+				Screens/Main/AddTravel/AddEditTravelUIState.swift,
+				Screens/Main/AddTravel/AddEditTravelViewModelProtocol.swift,
 				Screens/Main/TravelList/TravelListUIState.swift,
 				Screens/Main/TravelList/TravelListViewModelProtocol.swift,
 			);

@@ -12,6 +12,6 @@ extension Resolver {
         register { LoginViewModel(loginRepository: resolve()) }.scope(.unique)
         register { MainViewModel(sessionManager: resolve()) }.scope(.unique)
         register { TravelListViewModel() }.implements((any TravelListViewModelProtocol).self).scope(.unique)
-        register { AddTravelViewModel(travelsRepository: resolve()) }.implements((any AddTravelViewModelProtocol).self).scope(.unique)
+        register { AddEditTravelViewModel(travelsRepository: resolve()) }.implements((any AddEditTravelViewModelProtocol).self).scope(.unique)
     }
 }

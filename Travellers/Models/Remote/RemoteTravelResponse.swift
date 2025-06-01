@@ -10,7 +10,7 @@ struct RemoteTravelResponse: Decodable {
     let description: String?
     let id: String
     let owner: Bool
-    let imageId: String?
+    let imageId: String
     
     
     enum CodingKeys: String, CodingKey {
@@ -24,4 +24,5 @@ struct RemoteTravelResponse: Decodable {
     func toExternalModel() -> ExternalTravel {
         return ExternalTravel(title: title, description: description, id: id, owner: owner, imageId: imageId)
     }
+    
 }

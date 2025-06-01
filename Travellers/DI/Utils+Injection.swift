@@ -10,6 +10,6 @@ import Resolver
 extension Resolver {
 
     public static func registerUtils() {
-        register{ SessionManager() }.scope(.application)
+        register { SessionManager() }.scope(.application)
     }
 }

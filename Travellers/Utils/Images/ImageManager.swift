@@ -6,5 +6,5 @@
 //
 
 class ImageManager {
-    
+    static let POSSIBLE_DEFAULT_IMAGES = ["default_road.png", "deafult_beach_image.png"]
 }

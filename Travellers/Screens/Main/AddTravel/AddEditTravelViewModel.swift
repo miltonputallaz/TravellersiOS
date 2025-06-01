@@ -10,10 +10,10 @@ import Resolver
 import PhotosUI
 import SwiftUI
 
-class AddTravelViewModel: AddTravelViewModelProtocol {
+class AddEditTravelViewModel: AddEditTravelViewModelProtocol {
     
     private var travelsRepository: TravelsRepository
-    @Published var uiState = AddTravelUIState()
+    @Published var uiState = AddEditTravelUIState()
     @Published var selectedImage: PhotosPickerItem? = nil {
         didSet {
             Task {

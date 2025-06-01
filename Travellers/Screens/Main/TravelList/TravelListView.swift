@@ -21,15 +21,18 @@ struct TravelListView <VM: TravelListViewModelProtocol>: View {
         List {
             ForEach(viewModel.uiState.travels, id: \.id) { travel in
                 TravelCardItem(travel: travel)
-                    .listRowInsets(EdgeInsets())
+                    .listRowInsets(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 0))
+                    .listRowSeparator(.hidden)
+                    .onTapGesture {
+                        path.append(MainDestinations.AddTravel(travel: travel))
+                    }
             }
         }
+        .listStyle(.plain)
         .toolbar {
-             
-            // view modifiers
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: {
-                    path.append(MainDestinations.AddTravel)
+                    path.append(MainDestinations.AddTravel())
                 }) {
                     Image(systemName: "plus")
                 }
@@ -46,7 +49,7 @@ struct TravelListView <VM: TravelListViewModelProtocol>: View {
 
     var travelListViewModel: MockTravelListViewModel = Resolver.mock.resolve()
     
-    travelListViewModel.setTravels(travels: [ExternalTravel(title: "Titulo", description: nil, id: "id", owner: true, imageId: nil)])
+    travelListViewModel.setTravels(travels: [ExternalTravel(title: "Titulo", description: nil, id: "id", owner: true, imageId: ImageManager.POSSIBLE_DEFAULT_IMAGES[0]), ExternalTravel(title: "Titulo", description: nil, id: "id", owner: true, imageId: ImageManager.POSSIBLE_DEFAULT_IMAGES[0])])
     
     return TravelListView(viewModel: travelListViewModel, path: .constant([])).environmentObject(ThemeManager())
 }

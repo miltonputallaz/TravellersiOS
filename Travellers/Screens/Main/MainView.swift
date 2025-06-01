@@ -28,10 +28,11 @@ struct MainView: View {
             .navigationDestination(for: MainDestinations.self) { screen in
             
                 switch screen {
-                case .AddTravel:
-                    AddTravelView<AddTravelViewModel>()
+                case .AddTravel(let travel):
+                    AddEditTravelView<AddEditTravelViewModel>(travel)
+                        .navigationTitle(String(localized: "Add Travel"))
                 }
-          }
+            }
             .toolbar {
                  
                 // view modifiers

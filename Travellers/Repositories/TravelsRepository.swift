@@ -7,7 +7,8 @@
 import Foundation
 
 protocol TravelsRepository {
-    func getTravels() async -> ResponseState<[ExternalTravel]>
+    func getTravelsFromBackend() async -> ResponseState<[ExternalTravel]>
+    func getTravelIfNecessary() async -> ResponseState<[ExternalTravel]>
     func postTravel(title: String, description: String?, image: Data?, invitedEmails: [String]?) async -> ResponseState<Void>
 }
 

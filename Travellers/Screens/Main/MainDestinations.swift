@@ -5,6 +5,6 @@
 //  Created by Milton Putallaz on 15/02/2025.
 //
 
-enum MainDestinations {
-    case AddTravel
+enum MainDestinations: Hashable {
+    case AddTravel(travel: ExternalTravel? = nil)
 }
